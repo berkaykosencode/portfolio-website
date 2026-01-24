@@ -26,9 +26,9 @@ Your complete portfolio website includes:
 - `components/WhatsAppButton.tsx` - Line 6
 - `app/page.tsx` - Line 20
 
-Replace `905XXXXXXXXX` with your actual WhatsApp number (including country code, no spaces or +).
+Replace with your actual WhatsApp number (including country code, no spaces or +).
 
-Example: `905551234567`
+Example: `905442151282`
 
 ### 2. Update Your Contact Information
 
@@ -191,7 +191,7 @@ npm run dev
 ### WhatsApp button doesn't work
 - Make sure you updated the phone number
 - Format must be: country code + number (no spaces, no +)
-- Example: `905551234567` NOT `+90 555 123 4567`
+- Example: `905442151282` NOT `+90 544 215 1282`
 
 ### Site looks broken on mobile
 - Clear your browser cache

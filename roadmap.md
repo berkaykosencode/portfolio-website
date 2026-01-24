@@ -81,7 +81,7 @@ List what you handle:
 
 **Where to Search:**
 - Google Maps: *"Plastik Cerrah [Neighborhood]"*
-- Target areas: Nişantaşı, Kadıköy, Konya Meram, etc.
+- Target areas: Nişantaşı, Kadıköy, Beşiktaş, Şişli, etc.
 
 **Red Flags to Look For:**
 1. ❌ gmail.com address instead of domain email
@@ -108,7 +108,7 @@ List what you handle:
 ```
 Hi [Doctor's Name],
 
-I'm Berkay, a web developer based in Konya. 
+I'm Berkay, a web developer based in İstanbul. 
 
 I was looking at your Instagram—your work is amazing—but I noticed 
 [specific issue: broken link/mobile problems/outdated design].

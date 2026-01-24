@@ -59,11 +59,11 @@ export default function Footer() {
 
         <div className="border-t border-gray-800 pt-8 text-center text-sm">
           <p>
-            &copy; {new Date().getFullYear()} Berkay Kösen. Tüm hakları saklıdır.
-          </p>
-          <p className="mt-2 text-xs text-gray-500">
-            Konya, Türkiye | Genç Girişimci
-          </p>
+          &copy; {new Date().getFullYear()} Berkay Kösen. Tüm hakları saklıdır.
+        </p>
+        <p className="mt-2 text-xs text-gray-500">
+          İstanbul, Türkiye | Genç Girişimci
+        </p>
         </div>
       </div>
     </footer>

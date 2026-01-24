@@ -50,10 +50,10 @@ npm install
 
 #### Update WhatsApp Number
 
-Edit the following files and replace `905XXXXXXXXX` with your actual WhatsApp number:
+Edit the following files and replace with your actual WhatsApp number:
 
-1. `/components/WhatsAppButton.tsx` (line 6)
-2. `/app/page.tsx` (line 20)
+1. `/components/WhatsAppButton.tsx` (line 11)
+2. `/app/page.tsx` (line 32)
 
 #### Update Contact Information
 

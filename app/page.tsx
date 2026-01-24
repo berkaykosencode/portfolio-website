@@ -8,7 +8,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen overflow-x-hidden">
       {/* Hero Section */}
       <Hero />
 
@@ -29,7 +29,7 @@ export default function Home() {
 
       {/* Floating WhatsApp Button */}
       <WhatsAppButton 
-        phoneNumber="905XXXXXXXXX" // Replace with your actual WhatsApp number
+        phoneNumber="905442151282" // Replace with your actual WhatsApp number
         message="Merhaba Berkay! Web siteniz hakkında bilgi almak istiyorum."
       />
     </main>
