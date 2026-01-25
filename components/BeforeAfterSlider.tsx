@@ -131,8 +131,8 @@ export default function BeforeAfterSlider({
       </div>
 
       {/* AI Disclaimer */}
-      <div className="absolute bottom-2 right-3 text-white/60 text-[10px] sm:text-xs font-light tracking-wider blur-[0.3px] select-none pointer-events-none drop-shadow-sm">
-        Bu fotoğraf ai ile üretilmiştir.
+      <div className="absolute bottom-2 right-3 text-black/90 text-[10px] sm:text-xs font-light tracking-wider select-none pointer-events-none drop-shadow-sm">
+        Bu fotoğraf AI ile üretilmiştir.
       </div>
     </div>
   );
