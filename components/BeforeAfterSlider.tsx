@@ -129,6 +129,11 @@ export default function BeforeAfterSlider({
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-xs md:text-sm">
         Kaydırarak karşılaştırın
       </div>
+
+      {/* AI Disclaimer */}
+      <div className="absolute bottom-2 right-3 text-white/60 text-[10px] sm:text-xs font-light tracking-wider blur-[0.3px] select-none pointer-events-none drop-shadow-sm">
+        Bu fotoğraf ai ile üretilmiştir.
+      </div>
     </div>
   );
 }
