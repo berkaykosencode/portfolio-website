@@ -71,7 +71,7 @@ Replace the placeholder in `/components/Hero.tsx` (lines 55-72) with your actual
 
 ```tsx
 <Image
-  src="/images/berkay-photo.jpg"
+  src="/images/berkay.jpg"
   alt="Berkay Kösen"
   fill
   className="object-cover"
@@ -79,7 +79,7 @@ Replace the placeholder in `/components/Hero.tsx` (lines 55-72) with your actual
 />
 ```
 
-Place your photo in `/public/images/berkay-photo.jpg`
+Place your photo in `/public/images/berkay.jpg`
 
 ### Step 4: Update Before/After Images
 

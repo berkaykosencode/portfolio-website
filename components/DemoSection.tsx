@@ -22,8 +22,8 @@ export default function DemoSection() {
             Hastalarınız Sonuçları Görmek İster
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Kodlarım, ameliyat öncesi ve sonrası fotoğraflarınızı 
-            mükemmel bir şekilde sergiler. İşte canlı bir örnek:
+            Yeni websitenizle, ameliyat öncesi ve sonrası fotoğraflarınızı
+            mükemmel bir şekilde sergileyebilirsiniz. İşte canlı bir örnek:
           </p>
         </motion.div>
 
@@ -35,8 +35,8 @@ export default function DemoSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <BeforeAfterSlider
-            beforeImage="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=800&h=600&fit=crop"
-            afterImage="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=800&h=600&fit=crop&brightness=1.1&saturation=1.2"
+            beforeImage="/images/beforerhino.png"
+            afterImage="/images/afterrhino.png"
             beforeLabel="Önce"
             afterLabel="Sonra"
           />
@@ -58,7 +58,7 @@ export default function DemoSection() {
               Instagram Uyumlu
             </h3>
             <p className="text-gray-600">
-              Ziyaretçilerinizin %90'ı Instagram'dan gelir. 
+              Ziyaretçilerinizin %90'ı Instagram'dan gelir.
               Siteleriniz Instagram tarayıcısında mükemmel çalışır.
             </p>
           </div>
@@ -71,7 +71,7 @@ export default function DemoSection() {
               Hızlı Yükleme
             </h3>
             <p className="text-gray-600">
-              Yavaş siteler hasta kaybettirir. Siteleriniz 1 saniyeden 
+              Yavaş siteler hasta kaybettirir. Siteleriniz 1 saniyeden
               az sürede yüklenir.
             </p>
           </div>
@@ -84,7 +84,7 @@ export default function DemoSection() {
               Güven Veren Tasarım
             </h3>
             <p className="text-gray-600">
-              Modern, temiz ve profesyonel görünüm. İşinizin kalitesini 
+              Modern, temiz ve profesyonel görünüm. İşinizin kalitesini
               yansıtan tasarımlar.
             </p>
           </div>
