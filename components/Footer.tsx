@@ -7,7 +7,7 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-bold text-xl mb-4">Berkay Kösen</h3>
             <p className="text-sm leading-relaxed">
-              Plastik cerrahlar ve estetik klinikler için modern, 
+              Plastik cerrahlar ve estetik klinikler için modern,
               mobil uyumlu ve KVKK uyumlu web siteleri geliştiriyorum.
             </p>
           </div>
@@ -59,11 +59,11 @@ export default function Footer() {
 
         <div className="border-t border-gray-800 pt-8 text-center text-sm">
           <p>
-          &copy; {new Date().getFullYear()} Berkay Kösen. Tüm hakları saklıdır.
-        </p>
-        <p className="mt-2 text-xs text-gray-500">
-          İstanbul, Türkiye | Genç Girişimci
-        </p>
+            &copy; {new Date().getFullYear()} Berkay Kösen. Tüm hakları saklıdır.
+          </p>
+          <p className="mt-2 text-xs text-gray-500">
+            İstanbul, Türkiye | Genç Girişimci
+          </p>
         </div>
       </div>
     </footer>

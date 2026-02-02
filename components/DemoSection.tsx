@@ -27,69 +27,65 @@ export default function DemoSection() {
           </p>
         </motion.div>
 
-        {/* Before/After Slider Demo */}
+        {/* Demo Cards Grid */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
+          className="grid md:grid-cols-3 gap-8"
         >
-          <BeforeAfterSlider
-            beforeImage="/images/beforerhino.png"
-            afterImage="/images/afterrhino.png"
-            beforeLabel="Önce"
-            afterLabel="Sonra"
-          />
+          {/* Demo 1 */}
+          <a href="/demo/surgeon1" className="group relative h-[400px] overflow-hidden rounded-2xl shadow-xl cursor-pointer block">
+            <div
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+              style={{ backgroundImage: "url('https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=2864&auto=format&fit=crop')" }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent opacity-80 group-hover:opacity-70 transition-opacity" />
+            <div className="absolute inset-0 flex flex-col justify-end p-8 text-white">
+              <span className="text-accent text-sm font-bold tracking-widest uppercase mb-2">Örnek Tasarım 1</span>
+              <h3 className="text-2xl font-serif font-bold mb-4">Minimalist & Modern</h3>
+              <span className="inline-block bg-white text-gray-900 px-6 py-3 rounded-full text-sm font-bold text-center group-hover:bg-accent group-hover:text-white transition-colors">
+                İncele
+              </span>
+            </div>
+          </a>
+
+          {/* Demo 2 */}
+          <a href="/demo/surgeon2" className="group relative h-[400px] overflow-hidden rounded-2xl shadow-xl cursor-pointer block">
+            <div
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+              style={{ backgroundImage: "url('https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=2070&auto=format&fit=crop')" }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent opacity-80 group-hover:opacity-70 transition-opacity" />
+            <div className="absolute inset-0 flex flex-col justify-end p-8 text-white">
+              <span className="text-accent text-sm font-bold tracking-widest uppercase mb-2">Örnek Tasarım 2</span>
+              <h3 className="text-2xl font-serif font-bold mb-4">Prestij & Kurumsal</h3>
+              <span className="inline-block bg-white text-gray-900 px-6 py-3 rounded-full text-sm font-bold text-center group-hover:bg-accent group-hover:text-white transition-colors">
+                İncele
+              </span>
+            </div>
+          </a>
+
+          {/* Demo 3 */}
+          <a href="/demo/surgeon3" className="group relative h-[400px] overflow-hidden rounded-2xl shadow-xl cursor-pointer block">
+            <div
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+              style={{ backgroundImage: "url('https://images.unsplash.com/photo-1512413914633-b5043f4041ea?q=80&w=2894&auto=format&fit=crop')" }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent opacity-80 group-hover:opacity-70 transition-opacity" />
+            <div className="absolute inset-0 flex flex-col justify-end p-8 text-white">
+              <span className="text-accent text-sm font-bold tracking-widest uppercase mb-2">Örnek Tasarım 3</span>
+              <h3 className="text-2xl font-serif font-bold mb-4">Estetik & Zarif</h3>
+              <span className="inline-block bg-white text-gray-900 px-6 py-3 rounded-full text-sm font-bold text-center group-hover:bg-accent group-hover:text-white transition-colors">
+                İncele
+              </span>
+            </div>
+          </a>
         </motion.div>
 
-        {/* Feature Highlights */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="grid md:grid-cols-3 gap-8 mt-16"
-        >
-          <div className="text-center">
-            <div className="w-16 h-16 bg-medical/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-3xl">📱</span>
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">
-              Instagram Uyumlu
-            </h3>
-            <p className="text-gray-600">
-              Ziyaretçilerinizin %90'ı Instagram'dan gelir.
-              Siteleriniz Instagram tarayıcısında mükemmel çalışır.
-            </p>
-          </div>
 
-          <div className="text-center">
-            <div className="w-16 h-16 bg-medical/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-3xl">⚡</span>
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">
-              Hızlı Yükleme
-            </h3>
-            <p className="text-gray-600">
-              Yavaş siteler hasta kaybettirir. Siteleriniz 1 saniyeden
-              az sürede yüklenir.
-            </p>
-          </div>
-
-          <div className="text-center">
-            <div className="w-16 h-16 bg-medical/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-3xl">🎨</span>
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">
-              Güven Veren Tasarım
-            </h3>
-            <p className="text-gray-600">
-              Modern, temiz ve profesyonel görünüm. İşinizin kalitesini
-              yansıtan tasarımlar.
-            </p>
-          </div>
-        </motion.div>
       </div>
-    </section>
+    </section >
   );
 }

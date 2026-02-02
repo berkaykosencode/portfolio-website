@@ -37,8 +37,8 @@ export default function Hero() {
 
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
-            Daha fazla hasta çekmek ve onlara güven vermek için tasarlanmış, 
-            modern ve mobil uyumlu web siteleri. KVKK uyumlu, hızlı ve 
+            Daha fazla hasta çekmek ve onlara güven vermek için tasarlanmış,
+            modern ve mobil uyumlu web siteleri. KVKK uyumlu, hızlı ve
             profesyonel.
           </p>
 
