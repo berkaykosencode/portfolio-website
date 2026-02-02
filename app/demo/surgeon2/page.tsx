@@ -4,6 +4,8 @@ import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import { motion } from "framer-motion";
 import { FaPhone, FaInstagram, FaWhatsapp, FaStar, FaQuoteRight } from "react-icons/fa";
 import { MdEmail, MdLocationOn, MdArrowForward, MdChevronLeft, MdChevronRight } from "react-icons/md";
+import { FaBars, FaTimes } from "react-icons/fa";
+import { AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
 const REVIEWS = [
@@ -38,11 +40,27 @@ const REVIEWS = [
 
 export default function Surgeon2Page() {
     const [scrolled, setScrolled] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [currentReview, setCurrentReview] = useState(0);
 
     const nextReview = () => {
         setCurrentReview((prev) => (prev + 1) % REVIEWS.length);
     };
+
+    // Lock body scroll when mobile menu is open
+    useEffect(() => {
+        if (mobileMenuOpen) {
+            document.body.style.overflow = "hidden";
+            document.documentElement.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+            document.documentElement.style.overflow = "";
+        }
+        return () => {
+            document.body.style.overflow = "";
+            document.documentElement.style.overflow = "";
+        };
+    }, [mobileMenuOpen]);
 
     const prevReview = () => {
         setCurrentReview((prev) => (prev - 1 + REVIEWS.length) % REVIEWS.length);
@@ -79,7 +97,46 @@ export default function Surgeon2Page() {
                     <a href="#contact" className="hidden md:flex bg-[#0047AB] hover:bg-[#003380] text-white px-8 py-3 rounded-full text-xs font-bold tracking-widest transition-all shadow-lg hover:shadow-[#0047AB]/20">
                         Randevu Al
                     </a>
+
+                    {/* Mobile Menu Button */}
+                    <button
+                        className="md:hidden z-50 text-2xl text-[#0b1d35]"
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    >
+                        {mobileMenuOpen ? <FaTimes className="text-[#0b1d35]" /> : <FaBars />}
+                    </button>
                 </div>
+
+                {/* Mobile Menu Overlay */}
+                <AnimatePresence>
+                    {mobileMenuOpen && (
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.95 }}
+                            transition={{ duration: 0.2 }}
+                            className="fixed inset-0 bg-white/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center space-y-8 md:hidden"
+                        >
+                            {["Hakkımda", "Prosedürler", "Galeri", "İletişim"].map((item) => (
+                                <a
+                                    key={item}
+                                    href={`#${item.toLowerCase()}`}
+                                    className="text-2xl font-serif text-[#0b1d35] font-bold tracking-tight hover:text-[#0047AB] transition-colors"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                >
+                                    {item}
+                                </a>
+                            ))}
+                            <a
+                                href="#contact"
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="bg-[#0047AB] text-white px-10 py-4 rounded-full text-sm font-bold tracking-widest shadow-xl"
+                            >
+                                Randevu Al
+                            </a>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </nav>
 
             {/* --- Hero Section --- */}

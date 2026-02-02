@@ -1,9 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { FaPhone, FaInstagram, FaWhatsapp, FaArrowRight, FaStar } from "react-icons/fa";
+import { FaPhone, FaInstagram, FaWhatsapp, FaArrowRight, FaStar, FaBars, FaTimes } from "react-icons/fa";
 import { MdEmail, MdLocationOn } from "react-icons/md";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 
@@ -30,6 +30,22 @@ const REVIEWS = [
 
 export default function Surgeon1Page() {
     const [scrolled, setScrolled] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+    // Lock body scroll when mobile menu is open
+    useEffect(() => {
+        if (mobileMenuOpen) {
+            document.body.style.overflow = "hidden";
+            document.documentElement.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+            document.documentElement.style.overflow = "";
+        }
+        return () => {
+            document.body.style.overflow = "";
+            document.documentElement.style.overflow = "";
+        };
+    }, [mobileMenuOpen]);
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -60,10 +76,38 @@ export default function Surgeon1Page() {
                     </div>
 
 
-
-                    {/* Mobile Menu Button (Simple Placeholder) */}
-                    <div className="md:hidden text-2xl text-[#c3a35a]">☰</div>
+                    {/* Mobile Menu Button */}
+                    <button
+                        className="md:hidden text-2xl text-[#c3a35a] z-50 relative"
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    >
+                        {mobileMenuOpen ? <FaTimes className="text-white" /> : <FaBars />}
+                    </button>
                 </div>
+
+                {/* Mobile Menu Overlay */}
+                <AnimatePresence>
+                    {mobileMenuOpen && (
+                        <motion.div
+                            initial={{ opacity: 0, x: "100%" }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: "100%" }}
+                            transition={{ type: "tween", duration: 0.3 }}
+                            className="fixed inset-0 bg-[#0d3d3b] z-40 flex flex-col items-center justify-center space-y-8 md:hidden"
+                        >
+                            {["Home", "Procedures", "Results", "Contact"].map((item) => (
+                                <a
+                                    key={item}
+                                    href={`#${item.toLowerCase()}`}
+                                    className="text-2xl font-serif text-white uppercase tracking-widest hover:text-[#c3a35a] transition-colors"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                >
+                                    {item}
+                                </a>
+                            ))}
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </nav>
 
             {/* --- Floating WhatsApp Button --- */}
