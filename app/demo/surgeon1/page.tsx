@@ -1,208 +1,318 @@
 "use client";
 
-import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import { motion } from "framer-motion";
-import { FaPhone, FaInstagram, FaWhatsapp, FaClock, FaMapMarkerAlt } from "react-icons/fa";
+import Image from "next/image";
+import { useState, useEffect } from "react";
+import { FaPhone, FaInstagram, FaWhatsapp, FaArrowRight, FaStar } from "react-icons/fa";
+import { MdEmail, MdLocationOn } from "react-icons/md";
+import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 
-export default function SurgeonDemoPage() {
+// --- Theme Colors ---
+// Primary: #0d3d3b (Deep Teal)
+// Accent: #c3a35a (Gold)
+// Light: #f8f9fa
+// Dark: #092726
+
+const PROCEDURES = [
+    { title: "Rhinoplasty", icon: "👃", desc: "Natural looking nose aesthetics personalized for your face." },
+    { title: "Revision Rhinoplasty", icon: "✨", desc: "Corrective surgery for previous unsatisfactory results." },
+    { title: "Facelift", icon: "👤", desc: "Rejuvenate your appearance with deep plane facelift techniques." },
+    { title: "Otoplasty", icon: "👂", desc: "Ear correction surgery for a balanced facial profile." },
+    { title: "Blepharoplasty", icon: "👁️", desc: "Eyelid aesthetics to remove tired look and bags." },
+    { title: "Neck Lift", icon: "🧣", desc: "Define your jawline and remove sagging neck skin." }
+];
+
+const REVIEWS = [
+    { name: "Sarah J.", text: "Dr. Surname changed my life. The results are so natural, nobody believes I had surgery!", stars: 5 },
+    { name: "Michael B.", text: "Professional, caring, and an absolute artist. Highly recommend his clinic.", stars: 5 },
+    { name: "Elif K.", text: "Sürecin başından sonuna kadar çok ilgiliydi. Sonuç tam istediğim gibi.", stars: 5 },
+];
+
+export default function Surgeon1Page() {
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => setScrolled(window.scrollY > 50);
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
     return (
-        <div className="min-h-screen bg-white">
-            {/* Hero Section */}
-            <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
-                <div className="absolute inset-0 bg-gray-900/40 z-10" />
-                <div
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                    style={{
-                        backgroundImage: "url('https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=2864&auto=format&fit=crop')"
-                    }}
-                />
+        <div className="bg-[#f8f9fa] min-h-screen font-sans text-slate-800">
 
-                <div className="relative z-20 text-center text-white px-4 max-w-4xl mx-auto">
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="text-lg md:text-xl font-light tracking-[0.2em] mb-4 uppercase"
-                    >
-                        Estetik ve Plastik Cerrahi
-                    </motion.p>
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                        className="text-5xl md:text-7xl font-serif font-bold mb-8 leading-tight"
-                    >
-                        Doğal Güzelliğinizi<br />
-                        <span className="italic font-light">Ortaya Çıkarın</span>
-                    </motion.h1>
+            {/* --- Navigation --- */}
+            <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-[#0d3d3b] shadow-xl py-3" : "bg-transparent py-6"}`}>
+                <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+                    <div className={`text-2xl font-serif font-bold tracking-wide ${scrolled ? "text-white" : "text-[#0d3d3b]"}`}>
+                        Dr. Name <span className="text-[#c3a35a]">Surname</span>
+                    </div>
+
+                    <div className="hidden md:flex space-x-8 items-center">
+                        {["Home", "Procedures", "Results", "Contact"].map((item) => (
+                            <a
+                                key={item}
+                                href={`#${item.toLowerCase()}`}
+                                className={`text-sm font-medium uppercase tracking-widest hover:text-[#c3a35a] transition-colors ${scrolled ? "text-gray-200" : "text-[#0d3d3b]"}`}
+                            >
+                                {item}
+                            </a>
+                        ))}
+                    </div>
+
+
+
+                    {/* Mobile Menu Button (Simple Placeholder) */}
+                    <div className="md:hidden text-2xl text-[#c3a35a]">☰</div>
+                </div>
+            </nav>
+
+            {/* --- Floating WhatsApp Button --- */}
+            <a
+                href="https://wa.me/905551234567"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#20bd5a] text-white p-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 flex items-center group"
+            >
+                <FaWhatsapp className="text-3xl" />
+                <span className="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-300 whitespace-nowrap font-bold">
+                    Book Appointment
+                </span>
+            </a>
+
+            {/* --- Hero Section --- */}
+            <section id="home" className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+                <div className="absolute top-0 right-0 w-1/2 h-full bg-[#e8ecec] -z-10 hidden lg:block" />
+
+                <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+                    {/* Left Content */}
+                    <div className="space-y-8">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8 }}
+                        >
+                            <h2 className="text-[#c3a35a] font-bold tracking-[0.2em] uppercase text-sm mb-4">
+                                European Board Certified
+                            </h2>
+                            <h1 className="text-5xl lg:text-7xl font-serif text-[#0d3d3b] leading-tight mb-6">
+                                Artistry in <br />
+                                <span className="italic">Facial Aesthetics</span>
+                            </h1>
+                            <p className="text-lg text-slate-600 leading-relaxed max-w-md border-l-4 border-[#c3a35a] pl-6">
+                                Combining medical precision with artistic vision to reveal your natural beauty. Specializing in Rhinoplasty and Facial Rejuvenation.
+                            </p>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2, duration: 0.8 }}
+                            className="flex flex-col sm:flex-row gap-4"
+                        >
+                            <button className="bg-[#0d3d3b] text-white px-8 py-4 uppercase text-xs font-bold tracking-widest hover:bg-[#092726] transition-colors">
+                                View Procedures
+                            </button>
+                            <button className="border border-[#0d3d3b] text-[#0d3d3b] px-8 py-4 uppercase text-xs font-bold tracking-widest hover:bg-[#0d3d3b] hover:text-white transition-colors">
+                                Before & After
+                            </button>
+                        </motion.div>
+
+                        <div className="flex items-center gap-4 pt-4">
+                            <div className="flex text-[#c3a35a]">
+                                {[1, 2, 3, 4, 5].map((_, i) => <FaStar key={i} />)}
+                            </div>
+                            <span className="text-sm font-semibold text-slate-500">4.9/5 based on 200+ reviews</span>
+                        </div>
+                    </div>
+
+                    {/* Right Image */}
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.4 }}
-                        className="flex flex-col md:flex-row gap-4 justify-center items-center"
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 1 }}
+                        className="relative h-[600px] w-full"
                     >
-                        <button className="bg-white text-gray-900 px-8 py-4 rounded-full font-medium hover:bg-opacity-90 transition-all transform hover:scale-105">
-                            Randevu Alın
-                        </button>
-                        <button className="border-2 border-white text-white px-8 py-4 rounded-full font-medium hover:bg-white/10 transition-all">
-                            Hizmetlerimiz
-                        </button>
+                        {/* Main Surgeon Image */}
+                        <div className="relative h-full w-full z-10">
+                            <Image
+                                src="/images/berkay.jpg"
+                                alt="Dr. Surgeon"
+                                fill
+                                className="object-cover object-top shadow-2xl"
+                            />
+                            {/* Frame Border Effect */}
+                            <div className="absolute -bottom-6 -left-6 w-full h-full border-2 border-[#c3a35a] -z-10 hidden md:block" />
+                        </div>
                     </motion.div>
                 </div>
             </section>
 
-            {/* Intro Section */}
-            <section className="py-24 px-4 bg-gray-50">
-                <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-                    <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
-                        <div
-                            className="absolute inset-0 bg-cover bg-center"
-                            style={{
-                                backgroundImage: "url('https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=2070&auto=format&fit=crop')"
-                            }}
-                        />
-                    </div>
-                    <div className="space-y-8">
-                        <h2 className="text-4xl md:text-5xl font-serif text-gray-900">
-                            Op. Dr. Ahmet Yılmaz
-                        </h2>
-                        <p className="text-xl text-gray-600 font-light leading-relaxed">
-                            15 yılı aşkın tecrübesiyle, estetik cerrahide doğallığı ve hasta memnuniyetini ön planda tutan yaklaşım. Her hasta özeldir ve kişiye özel tedavi planı gerektirir.
-                        </p>
-                        <div className="grid grid-cols-2 gap-8 pt-8">
-                            <div>
-                                <span className="block text-4xl font-bold text-gray-900 mb-2">5000+</span>
-                                <span className="text-gray-500 uppercase tracking-wider text-sm">Başarılı Operasyon</span>
-                            </div>
-                            <div>
-                                <span className="block text-4xl font-bold text-gray-900 mb-2">15+</span>
-                                <span className="text-gray-500 uppercase tracking-wider text-sm">Yıllık Tecrübe</span>
-                            </div>
+            {/* --- Stats Section --- */}
+            <section className="bg-[#0d3d3b] py-16 text-white">
+                <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/10">
+                    {[
+                        { label: "Years Experience", value: "15+" },
+                        { label: "Successful Surgeries", value: "5k+" },
+                        { label: "International Patients", value: "50+" },
+                        { label: "Patient Satisfaction", value: "99%" },
+                    ].map((stat, idx) => (
+                        <div key={idx} className="p-4">
+                            <div className="text-4xl lg:text-5xl font-serif text-[#c3a35a] mb-2">{stat.value}</div>
+                            <div className="text-sm uppercase tracking-widest text-white/80">{stat.label}</div>
                         </div>
-                        <div className="pt-8">
-                            <img
-                                src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Signature_sample.svg"
-                                alt="Signature"
-                                className="h-16 opacity-50"
-                            />
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </section>
 
-            {/* Services Grid */}
-            <section className="py-24 px-4">
-                <div className="max-w-7xl mx-auto">
+            {/* --- Procedures Section --- */}
+            <section id="procedures" className="py-24 bg-white">
+                <div className="max-w-7xl mx-auto px-6">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl font-serif text-gray-900 mb-4">Uzmanlık Alanları</h2>
-                        <div className="w-24 h-1 bg-gray-200 mx-auto" />
+                        <h3 className="text-[#c3a35a] uppercase tracking-widest font-bold text-sm mb-3">Expertise</h3>
+                        <h2 className="text-4xl font-serif text-[#0d3d3b]">Surgical Procedures</h2>
+                        <div className="w-24 h-1 bg-[#c3a35a] mx-auto mt-6" />
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {[
-                            {
-                                title: "Rinoplasti",
-                                desc: "Yüzünüzle uyumlu, doğal görünümlü burun estetiği.",
-                                img: "https://images.unsplash.com/photo-1512413914633-b5043f4041ea?q=80&w=2894&auto=format&fit=crop"
-                            },
-                            {
-                                title: "Meme Estetiği",
-                                desc: "Kişiye özel planlanan meme büyütme, küçültme ve dikleştirme.",
-                                img: "https://images.unsplash.com/photo-1571772996211-2a02c97b76a5?q=80&w=2940&auto=format&fit=crop"
-                            },
-                            {
-                                title: "Vücut Şekillendirme",
-                                desc: "Liposuction ve germe ameliyatları ile ideal vücut hatları.",
-                                img: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=2940&auto=format&fit=crop"
-                            }
-                        ].map((service, idx) => (
-                            <div key={idx} className="group relative h-[400px] overflow-hidden rounded-xl cursor-pointer">
-                                <div
-                                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                                    style={{ backgroundImage: `url('${service.img}')` }}
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                                <div className="absolute bottom-0 left-0 right-0 p-8 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                    <h3 className="text-2xl font-serif mb-3">{service.title}</h3>
-                                    <p className="text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        {service.desc}
-                                    </p>
-                                </div>
-                            </div>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {PROCEDURES.map((proc, idx) => (
+                            <motion.div
+                                key={idx}
+                                whileHover={{ y: -10 }}
+                                className="group p-10 bg-[#f8f9fa] hover:bg-[#0d3d3b] transition-all duration-300 border border-slate-100"
+                            >
+                                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300">{proc.icon}</div>
+                                <h3 className="text-xl font-serif font-bold text-[#0d3d3b] mb-4 group-hover:text-white">{proc.title}</h3>
+                                <p className="text-slate-600 mb-6 group-hover:text-white/80 leading-relaxed">
+                                    {proc.desc}
+                                </p>
+                                <a href="#" className="inline-flex items-center text-[#c3a35a] font-bold uppercase text-xs tracking-widest group-hover:text-[#c3a35a]">
+                                    Learn More <FaArrowRight className="ml-2" />
+                                </a>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* Before/After Section */}
-            <section className="py-24 px-4 bg-gray-900 text-white overflow-hidden">
-                <div className="max-w-7xl mx-auto">
-                    <div className="grid md:grid-cols-2 gap-16 items-center">
+            {/* --- Before & After Section --- */}
+            <section id="results" className="py-24 bg-[#f4f6f6]">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="grid lg:grid-cols-2 gap-16 items-center">
                         <div>
-                            <h2 className="text-3xl md:text-4xl font-serif mb-6">Değişim Hikayeleri</h2>
-                            <p className="text-gray-400 mb-8 text-lg leading-relaxed">
-                                Her hastamızın hikayesi benzersizdir. Gerçekleştirdiğimiz operasyonların sonuçlarını inceleyerek, hayalinizdeki görünüme nasıl kavuşabileceğiniz hakkında fikir edinebilirsiniz.
+                            <h3 className="text-[#c3a35a] uppercase tracking-widest font-bold text-sm mb-3">Real Results</h3>
+                            <h2 className="text-4xl font-serif text-[#0d3d3b] mb-6">Natural Transformations</h2>
+                            <p className="text-slate-600 leading-relaxed mb-8">
+                                We believe in results that enhance your natural features rather than changing who you are.
+                                Our patients enjoy a balanced, harmonious look that breathes confidence.
                             </p>
-                            <ul className="space-y-4 mb-8">
-                                {['Doğal Sonuçlar', 'Hızlı İyileşme Süreci', 'Kişiye Özel Planlama'].map((item, i) => (
-                                    <li key={i} className="flex items-center space-x-3 text-gray-300">
-                                        <div className="w-2 h-2 bg-white rounded-full" />
-                                        <span>{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                            <button className="text-white border-b-2 border-white/30 pb-1 hover:border-white transition-colors">
-                                Tüm Galeriye Git →
-                            </button>
+                            <a href="#" className="bg-[#0d3d3b] text-white px-8 py-4 uppercase text-xs font-bold tracking-widest hover:bg-[#092726] transition-colors inline-block">
+                                View Full Gallery
+                            </a>
                         </div>
 
-                        <div className="relative">
+                        {/* Custom Wrapper for the slider component */}
+                        <div className="shadow-2xl rounded-sm border-8 border-white">
                             <BeforeAfterSlider
-                                beforeImage="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=2550&auto=format&fit=crop"
-                                afterImage="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=2864&auto=format&fit=crop"
-                                beforeLabel="Önce"
-                                afterLabel="Sonra"
+                                beforeImage="/images/beforerhino.png"
+                                afterImage="/images/afterrhino.png"
+                                beforeLabel="Before"
+                                afterLabel="After"
                             />
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Contact Info Bar */}
-            <div className="bg-gray-50 border-y border-gray-200">
-                <div className="max-w-7xl mx-auto grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-200">
-                    <div className="p-8 text-center">
-                        <FaPhone className="w-6 h-6 mx-auto mb-4 text-gray-400" />
-                        <h4 className="font-semibold mb-2">Telefon</h4>
-                        <p className="text-gray-600">+90 (212) 555 0123</p>
-                        <p className="text-gray-600">+90 (532) 555 0123</p>
+            {/* --- Reviews Section --- */}
+            <section className="py-24 bg-white relative overflow-hidden">
+                {/* Decorative Background */}
+                <div className="absolute top-0 left-0 w-64 h-64 bg-[#c3a35a]/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+                <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#0d3d3b]/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
+
+                <div className="max-w-7xl mx-auto px-6 relative">
+                    <div className="text-center mb-16">
+                        <h3 className="text-[#c3a35a] uppercase tracking-widest font-bold text-sm mb-3">Testimonials</h3>
+                        <h2 className="text-4xl font-serif text-[#0d3d3b]">Patient Stories</h2>
+                        <div className="w-24 h-1 bg-[#c3a35a] mx-auto mt-6" />
                     </div>
-                    <div className="p-8 text-center">
-                        <FaClock className="w-6 h-6 mx-auto mb-4 text-gray-400" />
-                        <h4 className="font-semibold mb-2">Çalışma Saatleri</h4>
-                        <p className="text-gray-600">Pzt - Cuma: 09:00 - 18:00</p>
-                        <p className="text-gray-600">Cmt: 09:00 - 14:00</p>
-                    </div>
-                    <div className="p-8 text-center">
-                        <FaMapMarkerAlt className="w-6 h-6 mx-auto mb-4 text-gray-400" />
-                        <h4 className="font-semibold mb-2">Adres</h4>
-                        <p className="text-gray-600">Nişantaşı, Valikonağı Cad.</p>
-                        <p className="text-gray-600">Şişli / İstanbul</p>
+
+                    <div className="grid md:grid-cols-3 gap-8">
+                        {REVIEWS.map((review, idx) => (
+                            <motion.div
+                                key={idx}
+                                whileHover={{ y: -5 }}
+                                className="bg-white p-8 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border-t-4 border-[#c3a35a]"
+                            >
+                                <div className="flex text-[#c3a35a] mb-4 gap-1">
+                                    {[...Array(review.stars)].map((_, i) => <FaStar key={i} size={14} />)}
+                                </div>
+                                <p className="text-slate-600 italic mb-6 leading-relaxed">"{review.text}"</p>
+                                <div className="flex items-center gap-4">
+                                    <div className="w-10 h-10 rounded-full bg-[#f4f6f6] flex items-center justify-center text-[#0d3d3b] font-serif font-bold">
+                                        {review.name.charAt(0)}
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-[#0d3d3b] text-sm">{review.name}</h4>
+                                        <span className="text-xs text-slate-400 uppercase tracking-wider">Verified Patient</span>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        ))}
                     </div>
                 </div>
-            </div>
+            </section>
 
-            {/* Footer Simple */}
-            <footer className="bg-white py-12 px-4 border-t border-gray-100">
-                <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-                    <div className="text-2xl font-serif font-bold text-gray-900">Dr. Ahmet Yılmaz</div>
-                    <div className="flex gap-6">
-                        <FaInstagram className="w-6 h-6 text-gray-400 hover:text-gray-900 cursor-pointer transition-colors" />
-                        <FaWhatsapp className="w-6 h-6 text-gray-400 hover:text-gray-900 cursor-pointer transition-colors" />
+            {/* --- Footer --- */}
+            <footer id="contact" className="bg-[#0d3d3b] text-white pt-20 pb-10 border-t-4 border-[#c3a35a]">
+                <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12 mb-16">
+
+                    {/* Brand */}
+                    <div>
+                        <div className="text-3xl font-serif font-bold mb-6">
+                            Dr. Name <span className="text-[#c3a35a]">Surname</span>
+                        </div>
+                        <p className="text-white/70 leading-relaxed mb-6">
+                            Dedicated to providing the highest standard of care in facial plastic surgery.
+                            Istanbul, Turkey.
+                        </p>
+                        <div className="flex space-x-4">
+                            <a href="#" className="bg-white/10 p-3 hover:bg-[#c3a35a] transition-colors text-white"><FaInstagram /></a>
+                            <a href="#" className="bg-white/10 p-3 hover:bg-[#c3a35a] transition-colors text-white"><FaWhatsapp /></a>
+                        </div>
                     </div>
-                    <p className="text-sm text-gray-500">
-                        © 2024 Dr. Ahmet Yılmaz. Tüm hakları saklıdır.
-                    </p>
+
+                    {/* Contact Info */}
+                    <div>
+                        <h4 className="text-lg font-bold mb-6 uppercase tracking-widest border-l-4 border-[#c3a35a] pl-4">Contact Info</h4>
+                        <ul className="space-y-4 text-white/80">
+                            <li className="flex items-start gap-4">
+                                <MdLocationOn className="text-[#c3a35a] text-xl mt-1" />
+                                <span>Nisantasi, Istanbul<br />Turkey</span>
+                            </li>
+                            <li className="flex items-center gap-4">
+                                <FaPhone className="text-[#c3a35a] text-xl" />
+                                <span>+90 555 123 45 67</span>
+                            </li>
+                            <li className="flex items-center gap-4">
+                                <MdEmail className="text-[#c3a35a] text-xl" />
+                                <span>info@drname.com</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    {/* Quick Links */}
+                    <div>
+                        <h4 className="text-lg font-bold mb-6 uppercase tracking-widest border-l-4 border-[#c3a35a] pl-4">Quick Links</h4>
+                        <ul className="space-y-2 text-white/80">
+                            {['Rhinoplasty', 'Facelift', 'About Dr. Name', 'Patient Guide', 'Contact'].map(link => (
+                                <li key={link}><a href="#" className="hover:text-[#c3a35a] transition-colors">› {link}</a></li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+
+                <div className="text-center text-white/40 text-sm border-t border-white/10 pt-8">
+                    © {new Date().getFullYear()} Dr. Name Surname. All Rights Reserved. Designed by You.
                 </div>
             </footer>
         </div>
