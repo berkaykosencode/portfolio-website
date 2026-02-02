@@ -39,12 +39,12 @@ export default function DemoSection() {
           <a href="/demo/surgeon1" className="group relative h-[400px] overflow-hidden rounded-2xl shadow-xl cursor-pointer block">
             <div
               className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-              style={{ backgroundImage: "url('https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=2864&auto=format&fit=crop')" }}
+              style={{ backgroundImage: "url('/images/generatedSurgeon1.png')" }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent opacity-80 group-hover:opacity-70 transition-opacity" />
             <div className="absolute inset-0 flex flex-col justify-end p-8 text-white">
               <span className="text-accent text-sm font-bold tracking-widest uppercase mb-2">Örnek Tasarım 1</span>
-              <h3 className="text-2xl font-serif font-bold mb-4">Minimalist & Modern</h3>
+              <h3 className="text-2xl font-serif font-bold mb-4">Luxury & Elegant</h3>
               <span className="inline-block bg-white text-gray-900 px-6 py-3 rounded-full text-sm font-bold text-center group-hover:bg-accent group-hover:text-white transition-colors">
                 İncele
               </span>
