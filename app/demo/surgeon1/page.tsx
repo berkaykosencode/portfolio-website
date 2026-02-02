@@ -68,7 +68,7 @@ export default function Surgeon1Page() {
 
             {/* --- Floating WhatsApp Button --- */}
             <a
-                href="https://wa.me/905551234567"
+                href="https://wa.me/905442151282"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#20bd5a] text-white p-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 flex items-center group"
@@ -135,7 +135,7 @@ export default function Surgeon1Page() {
                         {/* Main Surgeon Image */}
                         <div className="relative h-full w-full z-10">
                             <Image
-                                src="/images/berkay.jpg"
+                                src="/images/generatedSurgeon1.png"
                                 alt="Dr. Surgeon"
                                 fill
                                 className="object-cover object-top shadow-2xl"
