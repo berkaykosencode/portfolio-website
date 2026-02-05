@@ -12,7 +12,6 @@ export default function WhatsAppButton({
   message = "Merhaba Berkay! Web siteniz hakkında bilgi almak istiyorum.",
 }: WhatsAppButtonProps) {
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-  
   // Debug: Log to console
   console.log("WhatsApp Button Props:", { phoneNumber, message });
   console.log("Generated WhatsApp URL:", whatsappUrl);
@@ -28,7 +27,6 @@ export default function WhatsAppButton({
         aria-label="WhatsApp ile iletişime geç"
       >
         <FaWhatsapp className="w-7 h-7 md:w-8 md:h-8" />
-        
         {/* Tooltip */}
         <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-gray-900 text-white px-4 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
           WhatsApp ile mesaj gönder
