@@ -22,7 +22,7 @@ export default function Hero() {
             className="inline-block"
           >
             <span className="bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-semibold">
-              İstanbul merkezli ✨
+              İstanbul merkezli
             </span>
           </motion.div>
 

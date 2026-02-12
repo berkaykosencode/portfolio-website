@@ -2,11 +2,10 @@
 
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import { motion } from "framer-motion";
-import { FaPhone, FaInstagram, FaWhatsapp, FaStar, FaQuoteRight } from "react-icons/fa";
-import { MdEmail, MdLocationOn, MdArrowForward, MdChevronLeft, MdChevronRight } from "react-icons/md";
-import { FaBars, FaTimes } from "react-icons/fa";
-import { AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { FaStar, FaQuoteRight } from "react-icons/fa";
+import { MdArrowForward, MdChevronLeft, MdChevronRight } from "react-icons/md";
+import { useState } from "react";
+import Link from "next/link";
 
 const REVIEWS = [
     {
@@ -32,113 +31,19 @@ const REVIEWS = [
     }
 ];
 
-// --- Theme Colors ---
-// Primary (Medical Blue): #0047AB
-// Accent (Champagne Gold): #D4AF37
-// Background: #ffffff / #f8f9fa
-// Dark: #0b1d35
-
 export default function Surgeon2Page() {
-    const [scrolled, setScrolled] = useState(false);
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [currentReview, setCurrentReview] = useState(0);
 
     const nextReview = () => {
         setCurrentReview((prev) => (prev + 1) % REVIEWS.length);
     };
 
-    // Lock body scroll when mobile menu is open
-    useEffect(() => {
-        if (mobileMenuOpen) {
-            document.body.style.overflow = "hidden";
-            document.documentElement.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "";
-            document.documentElement.style.overflow = "";
-        }
-        return () => {
-            document.body.style.overflow = "";
-            document.documentElement.style.overflow = "";
-        };
-    }, [mobileMenuOpen]);
-
     const prevReview = () => {
         setCurrentReview((prev) => (prev - 1 + REVIEWS.length) % REVIEWS.length);
     };
 
-    useEffect(() => {
-        const handleScroll = () => setScrolled(window.scrollY > 50);
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-
     return (
-        <div className="min-h-screen bg-[#f8f9fa] font-sans selection:bg-[#D4AF37] selection:text-white">
-
-            {/* --- Navigation (Floating Glass) --- */}
-            <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 rounded-b-2xl ${scrolled ? "bg-white/90 backdrop-blur-md shadow-sm py-4" : "bg-transparent py-6"}`}>
-                <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-                    <a href="#" className="font-serif text-2xl font-bold tracking-tight text-[#0b1d35]">
-                        Dr. Name <span className="text-[#0047AB]">Surname</span>
-                    </a>
-
-                    <div className="hidden md:flex items-center space-x-12">
-                        {["Hakkımda", "Prosedürler", "Galeri", "İletişim"].map((item) => (
-                            <a
-                                key={item}
-                                href={`#${item.toLowerCase()}`}
-                                className="text-sm font-medium text-gray-600 hover:text-[#0047AB] transition-colors uppercase tracking-widest"
-                            >
-                                {item}
-                            </a>
-                        ))}
-                    </div>
-
-                    <a href="#contact" className="hidden md:flex bg-[#0047AB] hover:bg-[#003380] text-white px-8 py-3 rounded-full text-xs font-bold tracking-widest transition-all shadow-lg hover:shadow-[#0047AB]/20">
-                        Randevu Al
-                    </a>
-
-                    {/* Mobile Menu Button */}
-                    <button
-                        className="md:hidden z-50 text-2xl text-[#0b1d35]"
-                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                    >
-                        {mobileMenuOpen ? <FaTimes className="text-[#0b1d35]" /> : <FaBars />}
-                    </button>
-                </div>
-
-                {/* Mobile Menu Overlay */}
-                <AnimatePresence>
-                    {mobileMenuOpen && (
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.95 }}
-                            transition={{ duration: 0.2 }}
-                            className="fixed inset-0 bg-white/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center space-y-8 md:hidden"
-                        >
-                            {["Hakkımda", "Prosedürler", "Galeri", "İletişim"].map((item) => (
-                                <a
-                                    key={item}
-                                    href={`#${item.toLowerCase()}`}
-                                    className="text-2xl font-serif text-[#0b1d35] font-bold tracking-tight hover:text-[#0047AB] transition-colors"
-                                    onClick={() => setMobileMenuOpen(false)}
-                                >
-                                    {item}
-                                </a>
-                            ))}
-                            <a
-                                href="#contact"
-                                onClick={() => setMobileMenuOpen(false)}
-                                className="bg-[#0047AB] text-white px-10 py-4 rounded-full text-sm font-bold tracking-widest shadow-xl"
-                            >
-                                Randevu Al
-                            </a>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-            </nav>
-
+        <>
             {/* --- Hero Section --- */}
             <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
                 {/* Background Image */}
@@ -156,7 +61,7 @@ export default function Surgeon2Page() {
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 1 }}
+                        transition={{ duration: 0.8 }}
                         className="space-y-8"
                     >
                         <div className="inline-block px-4 py-2 bg-[#0047AB]/5 rounded-full border border-[#0047AB]/10">
@@ -176,13 +81,13 @@ export default function Surgeon2Page() {
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-5 pt-4">
-                            <button className="bg-[#0b1d35] text-white px-10 py-4 rounded-full font-medium shadow-xl hover:bg-[#152c4a] transition-all transform hover:-translate-y-1">
+                            <Link href="/demo/surgeon2/procedures" className="bg-[#0b1d35] text-white px-10 py-4 rounded-full font-medium shadow-xl hover:bg-[#152c4a] transition-all transform hover:-translate-y-1 text-center">
                                 Detaylı Bilgi
-                            </button>
-                            <button className="group flex items-center justify-center gap-3 bg-white border border-gray-200 text-[#0b1d35] px-10 py-4 rounded-full font-medium hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all">
+                            </Link>
+                            <Link href="/demo/surgeon2/results" className="group flex items-center justify-center gap-3 bg-white border border-gray-200 text-[#0b1d35] px-10 py-4 rounded-full font-medium hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all">
                                 Galeriyi İncele
                                 <MdArrowForward className="group-hover:translate-x-1 transition-transform" />
-                            </button>
+                            </Link>
                         </div>
                     </motion.div>
                 </div>
@@ -217,9 +122,9 @@ export default function Surgeon2Page() {
                             <span className="text-[#0047AB] font-bold tracking-widest uppercase text-sm mb-4 block">Uzmanlık Alanları</span>
                             <h2 className="text-4xl md:text-5xl font-serif text-[#0b1d35]">Exclusive Procedures</h2>
                         </div>
-                        <a href="#" className="hidden md:flex items-center gap-2 text-[#0047AB] font-medium hover:text-[#D4AF37] transition-colors pb-2 border-b border-[#0047AB]/20 hover:border-[#D4AF37]">
+                        <Link href="/demo/surgeon2/procedures" className="hidden md:flex items-center gap-2 text-[#0047AB] font-medium hover:text-[#D4AF37] transition-colors pb-2 border-b border-[#0047AB]/20 hover:border-[#D4AF37]">
                             Tüm Operasyonlar <MdArrowForward />
-                        </a>
+                        </Link>
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-8">
@@ -227,17 +132,17 @@ export default function Surgeon2Page() {
                             {
                                 title: "Rhinoplasty",
                                 desc: "Yüz harmonisi için kişiselleştirilmiş burun estetiği.",
-                                img: "https://images.unsplash.com/photo-1512413914633-b5043f4041ea?q=80&w=2894&auto=format&fit=crop"
+                                img: "/images/afterrhino.png"
                             },
                             {
                                 title: "Facelift",
                                 desc: "Zamanın izlerini silen, doğal gençleştirme teknikleri.",
-                                img: "https://images.unsplash.com/photo-1571772996211-2a02c97b76a5?q=80&w=2940&auto=format&fit=crop"
+                                img: "/images/afterFacelift.png"
                             },
                             {
                                 title: "Body Contour",
                                 desc: "Hayalinizdeki vücut hatlarına profesyonel dokunuş.",
-                                img: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=2940&auto=format&fit=crop"
+                                img: "/images/afterBodyContour.png"
                             }
                         ].map((proc, idx) => (
                             <motion.div
@@ -255,9 +160,9 @@ export default function Surgeon2Page() {
                                 <div className="px-4 pb-6">
                                     <h3 className="text-2xl font-serif text-[#0b1d35] mb-3 group-hover:text-[#0047AB] transition-colors">{proc.title}</h3>
                                     <p className="text-gray-500 leading-relaxed mb-6">{proc.desc}</p>
-                                    <span className="flex items-center gap-2 text-[#D4AF37] text-sm font-bold uppercase tracking-widest">
+                                    <Link href="/demo/surgeon2/procedures" className="flex items-center gap-2 text-[#D4AF37] text-sm font-bold uppercase tracking-widest">
                                         İncele <MdArrowForward />
-                                    </span>
+                                    </Link>
                                 </div>
                             </motion.div>
                         ))}
@@ -296,8 +201,8 @@ export default function Surgeon2Page() {
                         <div className="absolute -inset-4 border border-[#0047AB]/10 rounded-3xl -z-10 translate-x-4 translate-y-4" />
                         <div className="shadow-2xl rounded-2xl overflow-hidden border-8 border-white">
                             <BeforeAfterSlider
-                                beforeImage="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=2550&auto=format&fit=crop"
-                                afterImage="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=2864&auto=format&fit=crop"
+                                beforeImage="/images/beforerhino.png"
+                                afterImage="/images/afterrhino.png"
                                 beforeLabel="Önce"
                                 afterLabel="Sonra"
                             />
@@ -361,56 +266,6 @@ export default function Surgeon2Page() {
                     </div>
                 </div>
             </section>
-
-            {/* --- Footer (Minimalist Dark Blue) --- */}
-            <footer className="bg-[#081526] text-white/60 py-20 px-6 border-t border-[#ffffff]/5">
-                <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
-                    <div className="col-span-1 md:col-span-2">
-                        <a href="#" className="font-serif text-3xl font-bold text-white block mb-6">
-                            Dr. Name <span className="text-[#0047AB]">Surname</span>
-                        </a>
-                        <p className="max-w-sm font-light leading-relaxed mb-8">
-                            Uluslararası standartlarda estetik cerrahi hizmeti.
-                            İstanbul'un kalbinde, modern tıp teknolojisi ile doğal güzelliğiniz için çalışıyoruz.
-                        </p>
-                        <div className="flex gap-4">
-                            <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#0047AB] hover:text-white transition-colors"><FaInstagram /></a>
-                            <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#0047AB] hover:text-white transition-colors"><FaWhatsapp /></a>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h4 className="text-white font-bold uppercase tracking-widest text-sm mb-6">İletişim</h4>
-                        <ul className="space-y-4 font-light">
-                            <li className="flex gap-3 items-start hover:text-white transition-colors">
-                                <MdLocationOn className="text-[#D4AF37] text-xl shrink-0" />
-                                <span>Nişantaşı, Valikonağı Cad.<br />No: 123 İstanbul</span>
-                            </li>
-                            <li className="flex gap-3 items-center hover:text-white transition-colors">
-                                <FaPhone className="text-[#D4AF37] text-xl shrink-0" />
-                                <span>+90 (212) 555 0123</span>
-                            </li>
-                            <li className="flex gap-3 items-center hover:text-white transition-colors">
-                                <MdEmail className="text-[#D4AF37] text-xl shrink-0" />
-                                <span>info@drahmet.com</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 className="text-white font-bold uppercase tracking-widest text-sm mb-6">Linkler</h4>
-                        <ul className="space-y-3 font-light">
-                            {['Hakkımda', 'Rinoplasti', 'Meme Estetiği', 'Vücut Estetiği', 'Blog', 'İletişim'].map(link => (
-                                <li key={link}><a href="#" className="hover:text-[#D4AF37] transition-colors">{link}</a></li>
-                            ))}
-                        </ul>
-                    </div>
-                </div>
-
-                <div className="max-w-7xl mx-auto pt-10 mt-10 border-t border-[#ffffff]/5 text-center text-sm font-light">
-                    © {new Date().getFullYear()} Dr. Name Surname. Tüm hakları saklıdır.
-                </div>
-            </footer>
-        </div>
+        </>
     );
 }
