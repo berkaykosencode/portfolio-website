@@ -50,35 +50,62 @@ export default function ResultsPage() {
 
             {/* Before After Grid */}
             <div className="max-w-7xl mx-auto px-6 mb-32">
-                <div className="flex flex-col gap-20">
-                    {[1, 2].map((item, idx) => (
-                        <div key={idx} className={`flex flex-col lg:flex-row gap-12 items-center ${idx % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
-                            <div className="flex-1 space-y-6">
-                                <span className="text-[#0047AB] font-bold tracking-widest uppercase text-sm">Vaka #{idx + 1}</span>
-                                <h2 className="text-3xl md:text-4xl font-serif text-[#0b1d35]">Rinoplasti Sonuçları</h2>
-                                <p className="text-gray-600 leading-relaxed">
-                                    Hastamızın burun kemeri düzeltildi ve burun ucu kaldırıldı.
-                                    Doğal görünüm korunarak yüz hatlarıyla uyumlu bir profil elde edildi.
-                                    Operasyon sonrası 1. yıl kontrolü.
-                                </p>
-                                <div className="flex gap-4">
-                                    <div className="px-4 py-2 bg-gray-100 rounded-lg text-sm font-medium text-gray-600">Açık Teknik</div>
-                                    <div className="px-4 py-2 bg-gray-100 rounded-lg text-sm font-medium text-gray-600">Piezo Cerrahisi</div>
-                                </div>
-                            </div>
-                            <div className="flex-1 w-full relative">
-                                <div className="absolute -inset-4 border border-[#0047AB]/10 rounded-3xl -z-10 translate-x-4 translate-y-4" />
-                                <div className="shadow-2xl rounded-2xl overflow-hidden border-8 border-white">
-                                    <BeforeAfterSlider
-                                        beforeImage="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=2550&auto=format&fit=crop"
-                                        afterImage="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=2864&auto=format&fit=crop"
-                                        beforeLabel="Önce"
-                                        afterLabel="Sonra"
-                                    />
-                                </div>
+                <div className="flex flex-col gap-32">
+                    {/* Case 1: Rhinoplasty */}
+                    <div className="flex flex-col lg:flex-row gap-12 items-center">
+                        <div className="flex-1 space-y-6">
+                            <span className="text-[#0047AB] font-bold tracking-widest uppercase text-sm">Vaka #1</span>
+                            <h2 className="text-3xl md:text-4xl font-serif text-[#0b1d35]">Rinoplasti Sonuçları</h2>
+                            <p className="text-gray-600 leading-relaxed">
+                                Hastamızın burun kemeri düzeltildi ve burun ucu kaldırıldı.
+                                Doğal görünüm korunarak yüz hatlarıyla uyumlu bir profil elde edildi.
+                                Operasyon sonrası 1. yıl kontrolü.
+                            </p>
+                            <div className="flex gap-4">
+                                <div className="px-4 py-2 bg-gray-100 rounded-lg text-sm font-medium text-gray-600">Açık Teknik</div>
+                                <div className="px-4 py-2 bg-gray-100 rounded-lg text-sm font-medium text-gray-600">Piezo Cerrahisi</div>
                             </div>
                         </div>
-                    ))}
+                        <div className="flex-1 w-full relative">
+                            <div className="absolute -inset-4 border border-[#0047AB]/10 rounded-3xl -z-10 translate-x-4 translate-y-4" />
+                            <div className="shadow-2xl rounded-2xl overflow-hidden border-8 border-white">
+                                <BeforeAfterSlider
+                                    beforeImage="/images/beforerhino.png"
+                                    afterImage="/images/afterrhino.png"
+                                    beforeLabel="Önce"
+                                    afterLabel="Sonra"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Case 2: Facelift */}
+                    <div className="flex flex-col lg:flex-row-reverse gap-12 items-center">
+                        <div className="flex-1 space-y-6">
+                            <span className="text-[#0047AB] font-bold tracking-widest uppercase text-sm">Vaka #2</span>
+                            <h2 className="text-3xl md:text-4xl font-serif text-[#0b1d35]">Yüz Germe Sonuçları</h2>
+                            <p className="text-gray-600 leading-relaxed">
+                                Deep plane yüz germe tekniği ile alt yüz ve boyun bölgesindeki sarkmalar giderildi.
+                                Daha genç ve dinamik bir görünüm elde edildi.
+                                Operasyon sonrası 6. ay kontrolü.
+                            </p>
+                            <div className="flex gap-4">
+                                <div className="px-4 py-2 bg-gray-100 rounded-lg text-sm font-medium text-gray-600">Deep Plane</div>
+                                <div className="px-4 py-2 bg-gray-100 rounded-lg text-sm font-medium text-gray-600">Boyun Germe</div>
+                            </div>
+                        </div>
+                        <div className="flex-1 w-full relative">
+                            <div className="absolute -inset-4 border border-[#D4AF37]/10 rounded-3xl -z-10 -translate-x-4 translate-y-4" />
+                            <div className="shadow-2xl rounded-2xl overflow-hidden border-8 border-white">
+                                <BeforeAfterSlider
+                                    beforeImage="/images/beforeFacelift.png"
+                                    afterImage="/images/afterFacelift.png"
+                                    beforeLabel="Önce"
+                                    afterLabel="Sonra"
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
