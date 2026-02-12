@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-400 py-12">
@@ -39,19 +41,19 @@ export default function Footer() {
             <h4 className="text-white font-semibold mb-4">Yasal</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#" className="hover:text-accent transition-colors">
+                <Link href="/privacy" className="hover:text-accent transition-colors">
                   Gizlilik Politikası
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-accent transition-colors">
+                <Link href="/terms" className="hover:text-accent transition-colors">
                   Kullanım Şartları
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-accent transition-colors">
+                <Link href="/kvkk" className="hover:text-accent transition-colors">
                   KVKK Metni
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
