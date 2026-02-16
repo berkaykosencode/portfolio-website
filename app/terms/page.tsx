@@ -5,7 +5,7 @@ export default function TermsPage() {
                 <h1 className="text-4xl font-bold text-white mb-8">Kullanım Şartları</h1>
                 <div className="space-y-6 leading-relaxed">
                     <p>
-                        Bu web sitesini (berkaykosen.com) ziyaret ederek aşağıdaki şartları kabul etmiş sayılırsınız.
+                        Bu web sitesini (berkaykosenportfolio.vercel.app) ziyaret ederek aşağıdaki şartları kabul etmiş sayılırsınız.
                     </p>
 
                     <h2 className="text-2xl font-semibold text-white mt-8 mb-4">1. Hizmet Tanımı</h2>
