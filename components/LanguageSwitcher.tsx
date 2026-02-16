@@ -1,10 +1,16 @@
 "use client";
 
 import { useLanguage } from "@/contexts/LanguageContext";
-import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 export default function LanguageSwitcher() {
     const { locale, setLocale } = useLanguage();
+    const pathname = usePathname();
+
+    // Hide on demo pages
+    if (pathname.startsWith("/demo")) {
+        return null;
+    }
 
     return (
         <div className="fixed top-4 right-4 z-50 flex items-center gap-2 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-lg border border-gray-200">
