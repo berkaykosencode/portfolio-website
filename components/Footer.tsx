@@ -1,6 +1,11 @@
+"use client";
+
 import Link from "next/link";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="bg-gray-900 text-gray-400 py-12">
       <div className="max-w-7xl mx-auto px-4">
@@ -9,28 +14,27 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-bold text-xl mb-4">Berkay Kösen</h3>
             <p className="text-sm leading-relaxed">
-              Plastik cerrahlar ve estetik klinikler için modern,
-              mobil uyumlu ve KVKK uyumlu web siteleri geliştiriyorum.
+              {t.footer.brandDesc}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Hızlı Erişim</h4>
+            <h4 className="text-white font-semibold mb-4">{t.footer.quickLinks.title}</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <a href="#demo" className="hover:text-accent transition-colors">
-                  Örnek Çalışma
+                  {t.footer.quickLinks.demo}
                 </a>
               </li>
               <li>
                 <a href="#pricing" className="hover:text-accent transition-colors">
-                  Fiyatlandırma
+                  {t.footer.quickLinks.pricing}
                 </a>
               </li>
               <li>
                 <a href="#contact" className="hover:text-accent transition-colors">
-                  İletişim
+                  {t.footer.quickLinks.contact}
                 </a>
               </li>
             </ul>
@@ -38,21 +42,21 @@ export default function Footer() {
 
           {/* Legal */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Yasal</h4>
+            <h4 className="text-white font-semibold mb-4">{t.footer.legal.title}</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/privacy" className="hover:text-accent transition-colors">
-                  Gizlilik Politikası
+                  {t.footer.legal.privacy}
                 </Link>
               </li>
               <li>
                 <Link href="/terms" className="hover:text-accent transition-colors">
-                  Kullanım Şartları
+                  {t.footer.legal.terms}
                 </Link>
               </li>
               <li>
                 <Link href="/kvkk" className="hover:text-accent transition-colors">
-                  KVKK Metni
+                  {t.footer.legal.kvkk}
                 </Link>
               </li>
             </ul>
@@ -61,10 +65,10 @@ export default function Footer() {
 
         <div className="border-t border-gray-800 pt-8 text-center text-sm">
           <p>
-            &copy; {new Date().getFullYear()} Berkay Kösen. Tüm hakları saklıdır.
+            {t.footer.copyright}
           </p>
           <p className="mt-2 text-xs text-gray-500">
-            İstanbul, Türkiye | Genç Girişimci
+            {t.footer.subCopyright}
           </p>
         </div>
       </div>

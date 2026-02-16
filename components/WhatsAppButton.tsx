@@ -1,6 +1,7 @@
 "use client";
 
 import { FaWhatsapp } from "react-icons/fa";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface WhatsAppButtonProps {
   phoneNumber?: string;
@@ -11,6 +12,7 @@ export default function WhatsAppButton({
   phoneNumber = "905442151282", // Replace with your actual number
   message = "Merhaba Berkay! Web siteniz hakkında bilgi almak istiyorum.",
 }: WhatsAppButtonProps) {
+  const { t } = useLanguage();
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
   // Debug: Log to console
   console.log("WhatsApp Button Props:", { phoneNumber, message });
@@ -29,7 +31,7 @@ export default function WhatsAppButton({
         <FaWhatsapp className="w-7 h-7 md:w-8 md:h-8" />
         {/* Tooltip */}
         <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-gray-900 text-white px-4 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-          WhatsApp ile mesaj gönder
+          {t.whatsapp.tooltip}
         </span>
       </a>
 

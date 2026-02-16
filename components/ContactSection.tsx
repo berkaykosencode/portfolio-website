@@ -2,8 +2,11 @@
 
 import { motion } from "framer-motion";
 import { FaEnvelope, FaMapMarkerAlt, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function ContactSection() {
+  const { t } = useLanguage();
+
   return (
     <section id="contact" className="py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
       <div className="max-w-7xl mx-auto px-4">
@@ -16,14 +19,13 @@ export default function ContactSection() {
           className="text-center mb-16"
         >
           <span className="text-accent font-semibold text-sm uppercase tracking-wider">
-            İletişime Geçin
+            {t.contact.badge}
           </span>
           <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
-            Hemen Konuşalım
+            {t.contact.title}
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Kliniğiniz için nasıl bir dijital varlık yaratabileceğimizi 
-            konuşmak için bir WhatsApp mesajı uzağınızdayım.
+            {t.contact.subtitle}
           </p>
         </motion.div>
 
@@ -37,17 +39,17 @@ export default function ContactSection() {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold mb-6">İletişim Bilgileri</h3>
-              
+              <h3 className="text-2xl font-bold mb-6">{t.contact.info.title}</h3>
+
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center flex-shrink-0">
                     <FaEnvelope className="w-5 h-5 text-accent" />
                   </div>
                   <div>
-                    <p className="font-semibold mb-1">Email</p>
-                    <a 
-                      href="mailto:berkay@example.com" 
+                    <p className="font-semibold mb-1">{t.contact.info.email}</p>
+                    <a
+                      href="mailto:brkkosenwrk@gmail.com"
                       className="text-gray-300 hover:text-accent transition-colors"
                     >
                       brkkosenwrk@gmail.com
@@ -60,8 +62,8 @@ export default function ContactSection() {
                     <FaMapMarkerAlt className="w-5 h-5 text-accent" />
                   </div>
                   <div>
-                    <p className="font-semibold mb-1">Lokasyon</p>
-                    <p className="text-gray-300">İstanbul, Türkiye</p>
+                    <p className="font-semibold mb-1">{t.contact.info.location}</p>
+                    <p className="text-gray-300">{t.contact.info.locationValue}</p>
                   </div>
                 </div>
               </div>
@@ -69,7 +71,7 @@ export default function ContactSection() {
 
             {/* Social Links */}
             <div>
-              <h3 className="text-xl font-bold mb-4">Sosyal Medya</h3>
+              <h3 className="text-xl font-bold mb-4">{t.contact.social.title}</h3>
               <div className="flex gap-4">
                 <a
                   href="https://instagram.com/berkay.kosen"
@@ -93,9 +95,8 @@ export default function ContactSection() {
             {/* Quick Response */}
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
               <p className="text-sm text-gray-300 leading-relaxed">
-                <span className="text-accent font-semibold">⚡ Hızlı Yanıt Garantisi:</span> 
-                {" "}WhatsApp mesajlarınıza genellikle 1 saat içinde yanıt veriyorum. 
-                İş saatleri dışında bile!
+                <span className="text-accent font-semibold">{t.contact.quickResponse.title}</span>
+                {" "}{t.contact.quickResponse.text}
               </p>
             </div>
           </motion.div>
@@ -109,11 +110,10 @@ export default function ContactSection() {
             className="bg-gradient-to-br from-medical to-accent rounded-3xl p-8 md:p-10 flex flex-col justify-center"
           >
             <h3 className="text-3xl font-bold mb-4">
-              Ücretsiz Site Analizi
+              {t.contact.ctaCard.title}
             </h3>
             <p className="text-lg mb-8 text-white/90">
-              Mevcut sitenizi veya Instagram profilinizi analiz edeyim. 
-              Ne gibi iyileştirmeler yapabileceğimizi birlikte keşfedelim.
+              {t.contact.ctaCard.description}
             </p>
 
             <div className="space-y-4">
@@ -125,11 +125,11 @@ export default function ContactSection() {
                 whileTap={{ scale: 0.95 }}
                 className="block w-full bg-white text-medical px-8 py-4 rounded-full font-semibold text-lg text-center shadow-lg hover:shadow-xl transition-all duration-300"
               >
-                WhatsApp ile Mesaj Gönder
+                {t.contact.ctaCard.whatsappBtn}
               </motion.a>
 
               <p className="text-center text-sm text-white/80">
-                veya bana email gönderin
+                {t.contact.ctaCard.orEmail}
               </p>
 
               <motion.a
@@ -138,24 +138,18 @@ export default function ContactSection() {
                 whileTap={{ scale: 0.95 }}
                 className="block w-full bg-white/10 backdrop-blur-sm border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg text-center hover:bg-white hover:text-medical transition-all duration-300"
               >
-                Email Gönder
+                {t.contact.ctaCard.emailBtn}
               </motion.a>
             </div>
 
             <div className="mt-8 pt-8 border-t border-white/20">
               <ul className="space-y-3 text-sm">
-                <li className="flex items-center gap-2">
-                  <span className="text-accent">✓</span>
-                  <span>Yanıt süresi: ~1 saat</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-accent">✓</span>
-                  <span>Ücretsiz danışma görüşmesi</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-accent">✓</span>
-                  <span>Site analizi ve öneriler</span>
-                </li>
+                {t.contact.ctaCard.checklist.map((item, index) => (
+                  <li key={index} className="flex items-center gap-2">
+                    <span className="text-accent">✓</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </motion.div>

@@ -2,8 +2,11 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Hero() {
+  const { t } = useLanguage();
+
   return (
     <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-gray-100 px-4 py-20">
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
@@ -22,24 +25,22 @@ export default function Hero() {
             className="inline-block"
           >
             <span className="bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-semibold">
-              İstanbul merkezli
+              {t.hero.badge}
             </span>
           </motion.div>
 
           {/* Main Headline */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-            Türkiye'nin en iyi cerrahları için{" "}
+            {t.hero.title.split(t.hero.titleHighlight)[0]}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-medical to-accent">
-              dijital klinikler
+              {t.hero.titleHighlight}
             </span>{" "}
-            tasarlıyorum
+            {t.hero.title.split(t.hero.titleHighlight)[1]}
           </h1>
 
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
-            Daha fazla hasta çekmek ve onlara güven vermek için tasarlanmış,
-            modern ve mobil uyumlu web siteleri. KVKK uyumlu, hızlı ve
-            profesyonel.
+            {t.hero.subtitle}
           </p>
 
           {/* CTA Buttons */}
@@ -50,7 +51,7 @@ export default function Hero() {
               whileTap={{ scale: 0.95 }}
               className="bg-medical hover:bg-medical/90 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 text-center"
             >
-              Örnek Çalışmayı Gör
+              {t.hero.cta}
             </motion.a>
             <motion.a
               href="#contact"
@@ -58,7 +59,7 @@ export default function Hero() {
               whileTap={{ scale: 0.95 }}
               className="bg-white hover:bg-gray-50 text-gray-900 px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-gray-200 text-center"
             >
-              İletişime Geç
+              {t.hero.secondaryCta}
             </motion.a>
           </div>
 
@@ -107,3 +108,4 @@ export default function Hero() {
     </section>
   );
 }
+

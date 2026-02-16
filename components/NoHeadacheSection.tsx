@@ -1,49 +1,52 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { 
-  FaServer, 
-  FaShieldAlt, 
-  FaMobileAlt, 
-  FaWhatsapp, 
-  FaImages, 
-  FaHeadset 
+import {
+  FaServer,
+  FaShieldAlt,
+  FaMobileAlt,
+  FaWhatsapp,
+  FaImages,
+  FaHeadset
 } from "react-icons/fa";
-
-const features = [
-  {
-    icon: FaServer,
-    title: "Domain & Hosting Kurulumu",
-    description: "Alan adı alımı, hosting ayarları, SSL sertifikası - hepsi dahil.",
-  },
-  {
-    icon: FaShieldAlt,
-    title: "KVKK Uyumlu Formlar",
-    description: "Türkiye yasalarına uygun veri koruma ve gizlilik politikaları.",
-  },
-  {
-    icon: FaMobileAlt,
-    title: "Mobil-Öncelikli Tasarım",
-    description: "Instagram tarayıcısında bile mükemmel çalışan responsive tasarım.",
-  },
-  {
-    icon: FaWhatsapp,
-    title: "WhatsApp Entegrasyonu",
-    description: "Hastalarınız tek tıkla size ulaşabilir. Önceden yazılmış mesajlar.",
-  },
-  {
-    icon: FaImages,
-    title: "Önce/Sonra Galeri Sistemi",
-    description: "Ameliyat sonuçlarınızı etkileyici şekilde sergileyin.",
-  },
-  {
-    icon: FaHeadset,
-    title: "7/24 Teknik Destek",
-    description: "Site çöktü mü? Bir şey değişmesi mi gerekiyor? Her zaman yanınızdayım.",
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function NoHeadacheSection() {
+  const { t } = useLanguage();
+
+  const features = [
+    {
+      icon: FaServer,
+      title: t.noHeadache.features[0].title,
+      description: t.noHeadache.features[0].description,
+    },
+    {
+      icon: FaShieldAlt,
+      title: t.noHeadache.features[1].title,
+      description: t.noHeadache.features[1].description,
+    },
+    {
+      icon: FaMobileAlt,
+      title: t.noHeadache.features[2].title,
+      description: t.noHeadache.features[2].description,
+    },
+    {
+      icon: FaWhatsapp,
+      title: t.noHeadache.features[3].title,
+      description: t.noHeadache.features[3].description,
+    },
+    {
+      icon: FaImages,
+      title: t.noHeadache.features[4].title,
+      description: t.noHeadache.features[4].description,
+    },
+    {
+      icon: FaHeadset,
+      title: t.noHeadache.features[5].title,
+      description: t.noHeadache.features[5].description,
+    },
+  ];
+
   return (
     <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
       <div className="max-w-7xl mx-auto px-4">
@@ -56,14 +59,13 @@ export default function NoHeadacheSection() {
           className="text-center mb-16"
         >
           <span className="text-accent font-semibold text-sm uppercase tracking-wider">
-            Baş Ağrısı Yok
+            {t.noHeadache.badge}
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-4 mb-6">
-            Her Şeyi Ben Hallederim
+            {t.noHeadache.title}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Siz ameliyathanede harika işler çıkarırken, ben de sitenizin 
-            sorunsuz çalışmasını sağlarım. İşte tam olarak ne yapıyorum:
+            {t.noHeadache.subtitle}
           </p>
         </motion.div>
 
@@ -100,12 +102,10 @@ export default function NoHeadacheSection() {
           className="mt-16 bg-gradient-to-r from-medical to-accent p-8 md:p-12 rounded-3xl text-white text-center shadow-2xl"
         >
           <h3 className="text-3xl md:text-4xl font-bold mb-4">
-            Huzur İçinde Uyku Garantisi
+            {t.noHeadache.guarantee.title}
           </h3>
           <p className="text-xl mb-6 opacity-90 max-w-2xl mx-auto">
-            Site çöktü, hastalar ulaşamıyor, formlar çalışmıyor gibi 
-            korkulu rüyaları unutun. Ben her zaman bir WhatsApp mesajı 
-            kadar yakınım.
+            {t.noHeadache.guarantee.description}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <motion.a
@@ -114,7 +114,7 @@ export default function NoHeadacheSection() {
               whileTap={{ scale: 0.95 }}
               className="bg-white text-medical px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
             >
-              Hemen Başlayalım
+              {t.noHeadache.guarantee.cta1}
             </motion.a>
             <motion.a
               href="#pricing"
@@ -122,7 +122,7 @@ export default function NoHeadacheSection() {
               whileTap={{ scale: 0.95 }}
               className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-medical transition-all duration-300"
             >
-              Fiyatları Gör
+              {t.noHeadache.guarantee.cta2}
             </motion.a>
           </div>
         </motion.div>
