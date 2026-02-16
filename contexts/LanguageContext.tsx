@@ -6,13 +6,13 @@ import { translations, Locale } from '@/locales/translations';
 type LanguageContextType = {
     locale: Locale;
     setLocale: (locale: Locale) => void;
-    t: typeof translations['en'];
+    t: typeof translations['tr'];
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-    const [locale, setLocale] = useState<Locale>('en');
+    const [locale, setLocale] = useState<Locale>('tr');
 
     const value = {
         locale,
